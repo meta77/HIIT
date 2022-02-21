@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>time</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <link rel="stylesheet" href="TimeHIIT3.css">
+</head>
+
+<body>
+    <div class="container" id="app">
+        <p></p>
+        <p></p>
+        <h2>HIIT</h2>
+        <p>High Intensity Interval Training</p>
+        <p></p>
+        <p></p>
+        <div class="buttonCenter" v-if="isSetting">
+            <button class="button" v-on:click="startSetting" v-if="!isStart">セット数設定</button>
+            <select v-model="selected" v-if="this.isStart">
+                <option disabled value="">Please select one</option>
+                <option>2</option>
+                <option>4</option>
+                <option>6</option>
+                <option>8</option>
+                <option>10</option>
+                <option>12</option>
+                <option>14</option>
+                <option>16</option>
+            </select>
+            <button class="button" v-on:click="setOn" v-if="this.isStart">このセット数に設定する</button>
+        </div>
+        <p></p>
+        <div class="buttonCenter" >
+            <button class="btn-circle-border-simple" v-on:click="startCount" v-if="startState" >スタート</button>
+            <button class="btn-circle-border-simple" v-on:click="resetCount" v-if="!startState">リセット</button>
+        </div>
+        <h1>残り <span class="setNumber">{{setCount}}</span> セット</h1>
+        <div class='timeImage'>
+            <div class='timeImageColor'>
+                <img v-bind:src="timeNamePicture" alt="">
+            </div>
+            <p class="count">{{timeCountAction}}</p>
+        </div>
+        <h2 class='timeName'>{{timeNameAction}}</h2>
+    </div>
+
+
+<script src="TimeHIIT3.js"></script>
+</body>
+
+</html>
