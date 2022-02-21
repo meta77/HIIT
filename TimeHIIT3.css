@@ -1,0 +1,89 @@
+body{
+    background-color: rgb(175, 200, 221);
+}
+h1{
+    text-align:center;
+    font-size :30px;
+    color: rgb(73, 72, 72);
+}
+h2{
+    text-align:center;
+    font-size :50px;
+    margin: 5px;
+    padding: 5px;
+    color: rgb(73, 72, 72);
+}
+.setNumber{
+    text-align:center;
+    font-size :50px;
+    color: rgb(73, 72, 72);
+}
+.buttonCenter{
+    text-align:center;
+}
+.button{
+    position: relative;
+    display: inline-block;
+    padding: 0.25em 0.5em;
+    text-decoration: none;
+    color: #FFF;
+    background: #03A9F4;
+    border: solid 1px #0f9ada;
+    border-radius: 4px;
+    box-shadow:  inset 0 1px 0 rgba(255,255,255,0.2);
+    text-shadow: 0 1px 0 rgba(0,0,0,0.2);
+}
+.button:active{
+    border: solid 1px #03A9F4;
+    box-shadow: none;
+    text-shadow: none;
+}
+.btn-circle-border-simple {
+    display: inline-block;
+    text-decoration: none;
+    color: #668ad8;
+    width: 120px;
+    height: 120px;
+    line-height: 120px;
+    border-radius: 50%;
+    border: solid 2px #668ad8;
+    text-align: center;
+    overflow: hidden;
+    font-weight: bold;
+    transition: .4s;
+}
+.btn-circle-border-simple:hover {
+    background: #b3e1ff;
+}
+p{
+    text-align:center;
+    margin: 5px;
+    padding: 5px;
+}
+.count{
+    text-align:center;
+    font-size: 170px;
+    margin: 5px;
+    border: 0px;
+    padding: 0px;
+    color: rgb(64, 134, 240);
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.timeName{
+    color: rgb(81, 226, 245);
+}
+img{
+    width: 500px;
+    height: 300px;
+}
+.timeImage{
+    text-align:center;
+    position: relative;
+}
+.timeImageColor{
+    filter: opacity(60%);
+}
