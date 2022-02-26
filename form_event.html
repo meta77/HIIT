@@ -74,45 +74,66 @@
         </form>
       </div>
     </section>
+
+    <ul>
+        <li v-for="answer in answers" >
+            お名前：{{answer.name}} 件名：{{answer.subject}} 内容：{{answer.contents}}
+        </li>
+    </ul>
+    <div>
+        <input type="text" name="name1" v-model="name1">
+        <input type="text" name="subject1" v-model="subject1">
+        <input type="text" name="contents1" v-model="contents1">
+
+        <button class="button" v-on:click="setAnswer">追加する</button>
+    </div>
   </main>
 </div>
 
 <script>
-  var vm = new Vue({
-    el: '#app',
-    data: {
-      name: '', //お名前
-      subject: '', //件名
-      contents: '', //内容
-      errors: {
-        name: [],
-        subject: [],
-        contents: []
-      }
-    },
-    methods: {
-      validator: function (type, max) {
-        let name = []
-        let subject = []
-        let contents = []
-        let message = max + '文字以内で入力してください。'
-        if (type === 'name') {
-          if (this.name.length > max) {
-            name.push(message);
-          }
-          this.errors.name = name
-        } else if (type === 'subject') {
-          if (this.subject.length > max) {
-            subject.push(message);
-          }
-          this.errors.subject = subject
-        } else if (type === 'contents') {
-          if (this.contents.length > max) {
-            contents.push(message);
-          }
-          this.errors.contents = contents
-        }
-      },
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            name: '', //お名前
+            subject: '', //件名
+            contents: '', //内容
+            name1: '',
+            subject1:'',
+            contents1:'',
+            errors: {
+                name: [],
+                subject: [],
+                contents: []
+            },
+            answers: [
+            ]
+        },
+        methods: {
+            validator: function (type, max) {
+                let name = []
+                let subject = []
+                let contents = []
+                let message = max + '文字以内で入力してください。'
+                if (type === 'name') {
+                    if (this.name.length > max) {
+                        name.push(message);
+                    }
+                    this.errors.name = name
+                } else if (type === 'subject') {
+                    if (this.subject.length > max) {
+                        subject.push(message);
+                    }
+                    this.errors.subject = subject
+                } else if (type === 'contents') {
+                    if (this.contents.length > max) {
+                        contents.push(message);
+                    }
+                    this.errors.contents = contents
+                }
+            },
+            setAnswer: function(){
+                this.answers.push({name:this.name1, subject:this.subject1, contents:this.contents1});
+            }
     },
   });
 </script>
