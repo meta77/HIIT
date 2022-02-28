@@ -126,13 +126,14 @@
     </div>
     <section class="content">
         <transition-group name="list" tag="ul">
-          <li v-for="(item, index) in items" :key="item.id" class="item">
-            <span>{{item.id}}</span>
+          <li v-for="(item, index) in items" :key="index" class="item">
+            <span>{{index+1}}</span>
             <span>{{item.name}}</span>
             <span>{{item.price | formatCurrency}}</span>
             <span>
               <div class="color" :style="'background-color:' + item.colorCode"></div>
             </span>
+            <button class="button" v-on:click="deleteAnswer(index)">削除</button>
           </li>
         </transition-group>
       </section>
@@ -156,21 +157,21 @@
             },
             answers: [],
             items: [
-      { id: 1, name: "リンゴ", price: 100, colorName: '赤', colorCode: 'red' },
-      { id: 2, name: "ミカン", price: 150, colorName: 'オレンジ', colorCode: 'orange' },
-      { id: 3, name: "ブドウ", price: 300, colorName: '紫', colorCode: 'purple' },
-      { id: 4, name: "バナナ", price: 50, colorName: '黄', colorCode: 'yellow' },
-      { id: 5, name: "メロン", price: 550, colorName: '緑', colorCode: 'green' },
-      { id: 6, name: "スイカ", price: 400, colorName: '緑', colorCode: 'green' },
-      { id: 7, name: "トマト", price: 120, colorName: '赤', colorCode: 'red' },
-      { id: 8, name: "レモン", price: 110, colorName: '黄', colorCode: 'yellow' },
-      { id: 9, name: "イチゴ", price: 200, colorName: '赤', colorCode: 'red' },
-      { id: 10, name: "モモ", price: 150, colorName: 'ピンク', colorCode: 'pink' },
-      { id: 11, name: "ブルーベリー", price: 180, colorName:'紫', colorCode: 'purple' },
-      { id: 12, name: "ナシ", price: 160, colorName: '緑', colorCode: 'green' },
-      { id: 13, name: "グレープ", price: 110, colorName: '黄', colorCode: 'yellow' },
-      { id: 14, name: "カキ", price: 210, colorName: 'オレンジ', colorCode: 'orange' }
-    ]
+                { id: 1, name: "リンゴ", price: 100, colorName: '赤', colorCode: 'red' },
+                { id: 2, name: "ミカン", price: 150, colorName: 'オレンジ', colorCode: 'orange' },
+                { id: 3, name: "ブドウ", price: 300, colorName: '紫', colorCode: 'purple' },
+                { id: 4, name: "バナナ", price: 50, colorName: '黄', colorCode: 'yellow' },
+                { id: 5, name: "メロン", price: 550, colorName: '緑', colorCode: 'green' },
+                { id: 6, name: "スイカ", price: 400, colorName: '緑', colorCode: 'green' },
+                { id: 7, name: "トマト", price: 120, colorName: '赤', colorCode: 'red' },
+                { id: 8, name: "レモン", price: 110, colorName: '黄', colorCode: 'yellow' },
+                { id: 9, name: "イチゴ", price: 200, colorName: '赤', colorCode: 'red' },
+                { id: 10, name: "モモ", price: 150, colorName: 'ピンク', colorCode: 'pink' },
+                { id: 11, name: "ブルーベリー", price: 180, colorName:'紫', colorCode: 'purple' },
+                { id: 12, name: "ナシ", price: 160, colorName: '緑', colorCode: 'green' },
+                { id: 13, name: "グレープ", price: 110, colorName: '黄', colorCode: 'yellow' },
+                { id: 14, name: "カキ", price: 210, colorName: 'オレンジ', colorCode: 'orange' }
+            ]
 
         },
         methods: {
@@ -199,6 +200,12 @@
             setAnswer: function(){
                 this.answers.push({name:this.name1, subject:this.subject1, contents:this.contents1});
                 this.items.push({id:(this.items.length + 1), name:this.name1, price: this.subject1, colorName: 'オレンジ', colorCode: 'orange'});
+                this.name1 = '';
+                this.subject1 = '';
+                this.contents1 = '';
+            },
+            deleteAnswer: function(index){
+                this.items.splice(index, 1);
             }
     },
   });
