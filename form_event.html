@@ -82,54 +82,14 @@
 <body>
 <div class="container" id="app">
   <main class="main">
-    <section class="block">
-        <h1 class="block-title">お問い合わせ</h1>
-        <div class="block-body">
-          <form action="" class="form">
-          <fieldset>
-            <div class="form-group">
-              <label for="name">お名前<span class="badge">10文字</span></label>
-              <p class="errors" v-for="error in errors.name">{{error}}</p>
-              <input type="text" name="name" id="name" v-model="name" v-on:input="validator('name', 10)">
-            </div>
-            <div class="form-group">
-              <label for="subject">件名<span class="badge">20文字</span></label>
-              <p class="errors" v-for="error in errors.subject" v-if="error.length > 0">{{error}}</p>
-              <input type="text" name="subject" id="subject" v-model="subject" v-on:input="validator('subject', 20)">
-            </div>
-            <div class="form-group">
-              <label for="contents">内容<span class="badge">30文字</span></label>
-              <p class="errors" v-for="error in errors.contents" v-if="error.length > 0">{{error}}</p>
-              <div class="form-row">
-                <textarea type="text" name="contents" id="contents" v-model="contents" v-on:input="validator('contents', 30)"></textarea>
-              </div>
-            </div>
-            <p>
-              <input class="button" type="submit" value="送信する">
-            </p>
-          </fieldset>
-        </form>
-      </div>
-    </section>
     <h1 class="block-title">メモ</h1>
-    <ul>
-        <li v-for="answer in answers" >
-            著名：{{answer.name}} 著者名：{{answer.subject}} キーアイデア：{{answer.contents}}
-        </li>
-    </ul>
     <div>
-        <input type="text" name="name1" v-model="name1">
-        <input type="text" name="subject1" v-model="subject1">
-        <input type="text" name="contents1" v-model="contents1">
-
-        <button class="button" v-on:click="setAnswer">追加する</button>
-    </div>
     <section class="content">
         <transition-group name="list" tag="ul">
           <li v-for="(item, index) in items" :key="index" class="item">
             <span>{{index+1}}</span>
             <span>{{item.name}}</span>
-            <span>{{item.price | formatCurrency}}</span>
+            <span>{{item.price}}</span>
             <span>
               <div class="color" :style="'background-color:' + item.colorCode"></div>
             </span>
@@ -137,6 +97,19 @@
           </li>
         </transition-group>
       </section>
+    </div>
+    <ul>
+        <li v-for="answer in answers" >
+            著名：{{answer.name}} 著者名：{{answer.subject}}
+        </li>
+    </ul>
+    <p></p>
+    <div>
+        <input type="text" name="name1" placeholder="項目名" v-model="name1">
+        <input type="text" name="subject1" placeholder="数値" v-model="subject1">
+
+        <button class="button" v-on:click="setAnswer">追加する</button>
+    </div>
   </main>
 </div>
 
@@ -163,40 +136,11 @@
                 { id: 4, name: "バナナ", price: 50, colorName: '黄', colorCode: 'yellow' },
                 { id: 5, name: "メロン", price: 550, colorName: '緑', colorCode: 'green' },
                 { id: 6, name: "スイカ", price: 400, colorName: '緑', colorCode: 'green' },
-                { id: 7, name: "トマト", price: 120, colorName: '赤', colorCode: 'red' },
-                { id: 8, name: "レモン", price: 110, colorName: '黄', colorCode: 'yellow' },
-                { id: 9, name: "イチゴ", price: 200, colorName: '赤', colorCode: 'red' },
-                { id: 10, name: "モモ", price: 150, colorName: 'ピンク', colorCode: 'pink' },
-                { id: 11, name: "ブルーベリー", price: 180, colorName:'紫', colorCode: 'purple' },
-                { id: 12, name: "ナシ", price: 160, colorName: '緑', colorCode: 'green' },
-                { id: 13, name: "グレープ", price: 110, colorName: '黄', colorCode: 'yellow' },
-                { id: 14, name: "カキ", price: 210, colorName: 'オレンジ', colorCode: 'orange' }
+                { id: 7, name: "トマト", price: 120, colorName: '赤', colorCode: 'red' }
             ]
 
         },
         methods: {
-            validator: function (type, max) {
-                let name = []
-                let subject = []
-                let contents = []
-                let message = max + '文字以内で入力してください。'
-                if (type === 'name') {
-                    if (this.name.length > max) {
-                        name.push(message);
-                    }
-                    this.errors.name = name
-                } else if (type === 'subject') {
-                    if (this.subject.length > max) {
-                        subject.push(message);
-                    }
-                    this.errors.subject = subject
-                } else if (type === 'contents') {
-                    if (this.contents.length > max) {
-                        contents.push(message);
-                    }
-                    this.errors.contents = contents
-                }
-            },
             setAnswer: function(){
                 this.answers.push({name:this.name1, subject:this.subject1, contents:this.contents1});
                 this.items.push({id:(this.items.length + 1), name:this.name1, price: this.subject1, colorName: 'オレンジ', colorCode: 'orange'});
