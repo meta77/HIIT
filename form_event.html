@@ -39,7 +39,7 @@
     .content {
       float: left;
       height: 100%;
-      width: calc(100% - 270px);
+      width: calc(100% - 50px);
       position: relative;
     }
     .item {
@@ -47,11 +47,11 @@
       justify-content: space-around;
       align-items: center;
       margin: 10px;
-      width: 30%;
+      width: 40%;
       height: 10em;
       box-shadow: 3px 3px 5px rgba(0,0,0,0.2);
       border: solid 1px rgba(0,0,0,0.1);
-      background: rgba(255,255,255);
+      background: rgb(195, 223, 236);
     }
     .item > span {
       width: 25%;
@@ -93,7 +93,16 @@
             <span>
               <div class="color" :style="'background-color:' + item.colorCode"></div>
             </span>
-            <button class="button" v-on:click="deleteAnswer(index)">削除</button>
+            <dev v-if="isbutton">
+                <button class="button" v-on:click="editAnswer(index)">編集</button>
+                <button class="button" v-on:click="deleteAnswer(index)">削除</button>
+            </dev>
+            <div v-if="isEditButton">
+                <input type="text" name="name1" placeholder="項目名" v-model="name1">
+                <input type="text" name="subject1" placeholder="数値" v-model="subject1">
+
+                <button class="button" v-on:click="setEditAnswer(index)">保存</button>
+            </div>
           </li>
         </transition-group>
       </section>
@@ -137,7 +146,11 @@
                 { id: 5, name: "メロン", price: 550, colorName: '緑', colorCode: 'green' },
                 { id: 6, name: "スイカ", price: 400, colorName: '緑', colorCode: 'green' },
                 { id: 7, name: "トマト", price: 120, colorName: '赤', colorCode: 'red' }
-            ]
+            ],
+            isbutton:true,
+            isEditButton:false,
+
+
 
         },
         methods: {
@@ -150,6 +163,17 @@
             },
             deleteAnswer: function(index){
                 this.items.splice(index, 1);
+            },
+            editAnswer: function(){
+                this.isbutton = false;
+                this.isEditButton = true;
+            },
+            setEditAnswer: function(index){
+                this.items[index].name = this.name1;
+                this.items[index].subject = this.subject1;
+                this.isbutton = true;
+                this.isEditButton = false;
+
             }
     },
   });
