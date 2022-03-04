@@ -97,12 +97,6 @@
                 <button class="button" v-on:click="editAnswer(index)">編集</button>
                 <button class="button" v-on:click="deleteAnswer(index)">削除</button>
             </dev>
-            <div v-if="isEditButton">
-                <input type="text" name="name1" placeholder="項目名" v-model="name1">
-                <input type="text" name="subject1" placeholder="数値" v-model="subject1">
-
-                <button class="button" v-on:click="setEditAnswer(index)">保存</button>
-            </div>
           </li>
         </transition-group>
       </section>
@@ -113,11 +107,13 @@
         </li>
     </ul>
     <p></p>
-    <div>
+    <button class="button" v-on:click="editAnswer">新規追加</button>
+    <div v-if="isEditButton">
         <input type="text" name="name1" placeholder="項目名" v-model="name1">
         <input type="text" name="subject1" placeholder="数値" v-model="subject1">
 
-        <button class="button" v-on:click="setAnswer">追加する</button>
+        <button class="button" v-on:click="setAnswer" v-if="!isSave">追加</button>
+        <button class="button" v-on:click="saveAnswer" v-if="isSave">保存</button>
     </div>
   </main>
 </div>
@@ -149,6 +145,8 @@
             ],
             isbutton:true,
             isEditButton:false,
+            isSave : false,
+            index: '',
 
 
 
@@ -160,22 +158,32 @@
                 this.name1 = '';
                 this.subject1 = '';
                 this.contents1 = '';
+                this.isEditButton = false;
             },
             deleteAnswer: function(index){
                 this.items.splice(index, 1);
             },
-            editAnswer: function(){
-                this.isbutton = false;
+            editAnswer: function(index){
                 this.isEditButton = true;
+                this.name1 = this.items[index].name;
+                this.subject1 = this.items[index].price;
+                this.isSave = true;
+                this.index = index;
             },
             setEditAnswer: function(index){
                 this.items[index].name = this.name1;
                 this.items[index].subject = this.subject1;
                 this.isbutton = true;
                 this.isEditButton = false;
-
+            },
+            saveAnswer: function(){
+                this.items[this.index].name = this.name1;
+                this.items[this.index].price = this.subject1;
+                this.name1 = '';
+                this.subject1 = '';
+                this.isEditButton = false;
             }
-    },
+        }
   });
 </script>
 </body>
