@@ -100,7 +100,7 @@
           <li v-for="(item, index) in items" :key="index" v-bind:class="{ itemContents : (index === indexContent && isCardContents) , item: !(index === indexContent && isCardContents)}">
             <span>{{index+1}}</span>
             <span><button class="button" v-on:click="cardContents(index)" >{{item.name}}</button></span>
-            <span>{{item.price}}</span>
+            <span v-if="(index === indexContent && isCardContents)">{{item.price}}</span>
             <span>
               <div class="color" :style="'background-color:' + item.colorCode"></div>
             </span>
@@ -121,7 +121,7 @@
     <button class="button" v-on:click="editAnswer">新規追加</button>
     <div v-if="isEditButton">
         <input type="text" name="name1" placeholder="項目名" v-model="name1">
-        <input type="text" name="subject1" placeholder="数値" v-model="subject1">
+        <textarea row="5" name="subject1" placeholder="内容" v-model="subject1"></textarea>
 
         <button class="button" v-on:click="setAnswer" v-if="!isSave">追加</button>
         <button class="button" v-on:click="saveAnswer" v-if="isSave">保存</button>
