@@ -67,7 +67,9 @@
   <div id="app" class="container">
     <h1>ショッピングカート</h1>
     <div class="flex-container">
-      <!-- 一覧表示 -->
+
+
+        <!-- 一覧表示 -->
       <div class="flex-item">
         <div class="row" v-for="item in items">
           <div class="contents">
@@ -81,6 +83,9 @@
           </div>
         </div>
       </div>
+
+
+
       <!-- カート -->
       <div class="cart">
         <div class="summary">
@@ -91,7 +96,7 @@
             <tr v-for="(item, index) in cartItems">
               <td>{{item.title}}</td>
               <td>{{item.qty}}点</td>
-              <td>{{item.price | formatCurrency}}</td>
+              <td>{{item.price | formatCurrency}}</td>
               <td>
                 <a href="#" @click.stop.prevent="remove(index)"><i class="fas fa-times-circle"></i>削除</a>
               </td>
@@ -113,9 +118,7 @@
       { id: 3, title: 'ベーシック圏論', price: 4070, qty: 1, image: 'https://images-na.ssl-images-amazon.com/images/I/71+BiNxhHsL.jpg' },
       { id: 4, title: 'みんなの圏論', price: 5500, qty: 1, image: 'https://images-na.ssl-images-amazon.com/images/I/71FcZAnzGQL.jpg' },
       { id: 5, title: '数学原論', price: 3630, qty: 1, image: 'https://images-na.ssl-images-amazon.com/images/I/41R8afXV8VL._SX351_BO1,204,203,200_.jpg' },
-      { id: 6, title: '商品6', price: 50, qty: 1, image: './images/cart/thumbnail_06.jpg' },
-      { id: 7, title: '商品7', price: 9800, qty: 1, image: './images/cart/thumbnail_07.jpg' },
-      { id: 8, title: '商品8', price: 20, qty: 1, image: './images/cart/thumbnail_08.jpg' },
+      { id: 6, title: '現代思想2020年7月号　特集＝圏論の世界', price: 1650, qty: 1, image: 'https://m.media-amazon.com/images/I/41htsoGqZmL.jpg' },
     ];
 
     // カンマ区切り
